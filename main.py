@@ -36,17 +36,14 @@ st.title("Laundry Optimization with OptiGuide")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Input for user question
+
 question = st.text_input("Enter your question about laundry optimization:")
 
-# Button to submit the question
 if st.button("Ask OptiGuide") and question.strip() and api_key.strip():
     with st.spinner("Processing your question..."):
         summary = run_async(process_question(question, api_key))
-        # Add the question and response to chat history
         st.session_state.chat_history.append({"question": question, "response": summary})
 
-# Display chat history
 st.markdown("### Chat History")
 for chat in st.session_state.chat_history:
     st.markdown(f"**You:** {chat['question']}")
