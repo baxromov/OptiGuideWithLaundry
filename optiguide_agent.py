@@ -3,8 +3,13 @@ from autogen.agentchat import UserProxyAgent
 from optiguide import OptiGuideAgent
 
 
-def create_agent_and_user(source_code):
-    config_list = autogen.config_list_from_json('OAI_CONFIG_LIST')
+def create_agent_and_user(source_code, api_key):
+    config_list = [
+        {
+            "model": "gpt-4",
+            "api_key": str(api_key).strip()
+        }
+    ]
 
     example_qa = """
 ----------
